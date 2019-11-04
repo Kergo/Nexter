@@ -1,4 +1,92 @@
 .homes {
-    background-color: $color-secondary;
     grid-column: center-start / center-end;
+    margin: 15rem 0;
+
+    display: grid;
+    // min 250px going to 1fr ensuring that this columns are completly responsive without media queries
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-gap: 7rem;
+
+    .home {
+        background-color: $color-grey-light-1;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        // here we prevent the overlaping with the content under the name of the properties
+        grid-row-gap: 3.5rem;
+        
+        &__img {
+            width: 100%;
+            // here we place the image and the like "button" on top of each other
+            grid-row: 1 / 2;
+            grid-column: 1 / -1;
+            z-index: 1;
+        }
+        
+        &__like {
+            // here we place the image and the like "button" on top of each other
+            // and with z-index we ensure that the button is always on top
+            grid-row: 1 / 2;
+            grid-column: 2 / 3;
+            fill: $color-primary;
+            height: 2.5rem;
+            width: 2.5rem;
+            z-index: 2;
+
+            // we align the item itself on the right side of the image
+            justify-self: end;
+            margin: 1rem;
+        }
+        
+        &__name {
+            // here we align the item in the grid layout
+            // basically we place it over the picture in the 1st row and then we move it a bit with translateY
+            grid-row: 1 / 2;
+            grid-column: 1 / -1;
+            justify-self: center;
+            align-self: end;
+            transform: translateY(50%);
+            z-index: 2;
+
+            width: 80%;
+            font-family: $font-display;
+            font-size: 1.6rem;
+            text-align: center;
+            padding: 1.25rem;
+            background-color: $color-secondary;
+            color: #fff;
+            font-weight: 400;
+        }
+
+        // here we give a little bit more space between the name and these items
+        &__location,
+        &__rooms {
+            margin-top: 2.5rem;
+        }
+        
+        &__location,
+        &__rooms,
+        &__area,
+        &__price {
+
+            font-size: 1.5rem;
+            margin-left: 2rem;
+
+            // here we easily display the name and the icon next to each other
+            display: flex;
+            align-items: center;
+
+            svg {
+                fill: $color-primary;
+                height: 2rem;
+                width: 2rem;
+                margin-right: 1rem;
+            }
+        }
+
+        &__btn {
+            grid-column: 1 / -1;
+        }
+    }
+    
 }
